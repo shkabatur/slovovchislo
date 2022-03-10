@@ -1,4 +1,4 @@
-from random import vonmisesvariate
+
 import re
 
 d_to_l = {
@@ -28,4 +28,4 @@ def number_to_word(number: str) -> str:
     print(pat)
     return [re.sub(r'\n','',s) for s in re.findall(pat,words)]
     
-print(number_to_word('60'))
+print(number_to_word('1963'))
