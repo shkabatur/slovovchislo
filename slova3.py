@@ -16,7 +16,7 @@ d_to_l = {
 VOWELS = r'[аиеёоуыэюяьъй]'
 VOWELS_ = r'[аиеёоуыэюяьъй]*'
 
-words = open("russian_names.txt", "r", encoding="utf-8")
+words = open("cities.txt", "r", encoding="utf-8")
 words = words.read()
 
 def number_to_word(number: str) -> str:
@@ -27,4 +27,4 @@ def number_to_word(number: str) -> str:
     print(pat)
     return [re.sub(r'\n','',s) for s in re.findall(pat,words)]
 
-print(number_to_word('3'))
+print(number_to_word('759'))
