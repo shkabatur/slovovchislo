@@ -15,7 +15,10 @@ d_to_l = {
 
 VOWELS = r'[аиеёоуыэюяьъй]'
 VOWELS_ = r'[аиеёоуыэюяьъй]*'
-
+files = [
+    'ready/goroda_rossii',
+    ''
+    ]
 words = open("cities.txt", "r", encoding="utf-8")
 words = words.read()
 
