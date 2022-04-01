@@ -1,6 +1,20 @@
+import os
 import re
 import sys
 import json
+
+
+for k,v in os.environ.items():
+    print(k,v)
+
+def resource_path(relative):
+    return os.path.join(
+        os.environ.get(
+            "_MEIPASS2",
+            os.path.abspath(".")
+        ),
+        relative
+    ) 
 
 d_to_l = {
     '1' : r'[р]',
@@ -17,10 +31,10 @@ d_to_l = {
 
 VOWELS_ = r'[аиеёоуыэюяьъй]*'
 
-words = open("ready/russian_nouns.txt", "r", encoding="utf-8")
+words = open(resource_path("russian_nouns.txt"), "r", encoding="utf-8")
 words = words.read()
 
-with open("ready/russian_nouns_with_definition.json", "r", encoding="utf-8") as f:
+with open(resource_path("russian_nouns_with_definition.json"), "r", encoding="utf-8") as f:
     russian_nouns_with_definition = json.load(f)
 
 def number_to_word(number: str) -> str:
@@ -33,7 +47,6 @@ def number_to_word(number: str) -> str:
 
 def get_definition(word: str) -> str:
     return russian_nouns_with_definition[word]
-
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
