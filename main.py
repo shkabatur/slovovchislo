@@ -4,7 +4,7 @@ import sys
 import json
 
 
-for k,v in os.environ.items():
+""" for k,v in os.environ.items():
     print(k,v)
 
 def resource_path(relative):
@@ -14,7 +14,7 @@ def resource_path(relative):
             os.path.abspath(".")
         ),
         relative
-    ) 
+    )  """
 
 d_to_l = {
     '1' : r'[р]',
@@ -31,10 +31,10 @@ d_to_l = {
 
 VOWELS_ = r'[аиеёоуыэюяьъй]*'
 
-words = open(resource_path("russian_nouns.txt"), "r", encoding="utf-8")
+words = open("russian_nouns.txt", "r", encoding="utf-8")
 words = words.read()
 
-with open(resource_path("russian_nouns_with_definition.json"), "r", encoding="utf-8") as f:
+with open("russian_nouns_with_definition.json", "r", encoding="utf-8") as f:
     russian_nouns_with_definition = json.load(f)
 
 def number_to_word(number: str) -> str:
