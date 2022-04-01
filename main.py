@@ -1,4 +1,6 @@
 import re
+import sys
+import json
 
 d_to_l = {
     '1' : r'[р]',
@@ -13,21 +15,28 @@ d_to_l = {
     '0' : r'[лн]',
 }
 
-VOWELS = r'[аиеёоуыэюяьъй]'
 VOWELS_ = r'[аиеёоуыэюяьъй]*'
-files = [
-    'ready/goroda_rossii',
-    ''
-    ]
-words = open("cities.txt", "r", encoding="utf-8")
+
+words = open("ready/russian_nouns.txt", "r", encoding="utf-8")
 words = words.read()
+
+with open("ready/russian_nouns_with_definition.json", "r", encoding="utf-8") as f:
+    russian_nouns_with_definition = json.load(f)
 
 def number_to_word(number: str) -> str:
     pat = []
     for d in number:
         pat.append(d_to_l[d])
     pat = r'\s'+VOWELS_  + VOWELS_.join(pat) +VOWELS_ + r'\s'
-    print(pat)
+    #print(pat)
     return [re.sub(r'\n','',s) for s in re.findall(pat,words)]
 
-print(number_to_word('759'))
+def get_definition(word: str) -> str:
+    return russian_nouns_with_definition[word]
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        print(number_to_word(sys.argv[1]))
+    else:
+        print("Введите номер для перевода в слово")
